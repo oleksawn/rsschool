@@ -1,0 +1,201 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: rgb(140, 114, 173);
+  color:rgb(226, 218, 236);
+  font-family: cursive;
+}
+a {
+  text-decoration: none;
+}
+
+.container {
+  position: relative;
+  min-height: 100vh;
+  width: 1200px; 
+  background-color: rgb(30, 11, 54);
+  margin: 0 auto;
+  padding: 20px 140px 20px 80px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  width: 900px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.nav__item {
+  display: block;
+  padding: 10px 20px;
+}
+.nav__item:link,
+.nav__item:visited {
+  font-size: 24px;
+  color:rgb(140, 114, 173);
+}
+.nav__item:hover {
+  text-shadow: 0 0 20px white;
+}
+.nav__game {
+  text-shadow: 0 0 20px white;
+}
+.nav__item_active {
+  border-bottom: 2px solid rgb(140, 114, 173);
+  text-shadow: 0 0 20px white;
+}
+.nav__item_hidden {
+  display: none;
+}
+
+
+.loggedGamer {
+  position: absolute;
+  top: 30px;
+  right: -50px;
+  width: 160px;
+  height: 80px;
+  padding-top: 10px;
+  background-color:rgb(111, 81, 150);
+  border: 2px solid rgb(226, 218, 236);
+}
+.loggedGamer__data {
+  text-align: center;
+  margin-bottom: 10px;
+  height: 74px;
+}
+.logOutBtn {
+  display: block;
+  width: 120px;
+  height: 36px;
+  background-color: rgb(30, 11, 54);
+  color:rgb(226, 218, 236);
+  font-family: cursive;
+  border-radius: 4px;
+
+  margin: 0 auto;
+  border:none;
+  font-size: 16px;
+}
+
+
+.about {
+  width: 400px;
+  height: 420px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  background-color:rgb(111, 81, 150);
+  border: 2px solid rgb(226, 218, 236);
+}
+.about .heading {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 22px;
+  text-align: center;
+}
+.about .steps .login {
+  background-color: rgb(30, 11, 54);
+  border-radius: 4px;
+}
+
+
+.logForm {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 300px;
+  margin: 0 auto;
+  padding: 40px 40px;
+  background-color:rgb(111, 81, 150);
+  border: 2px solid rgb(226, 218, 236);
+}
+.logForm .wrapper {
+  width: 310px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.logForm input {
+  width: 280px;
+  height: 30px;
+  margin: 0;
+  margin-bottom: 24px;
+}
+.logForm .ok {
+  display: none;
+  width: 30px;
+  height: 30px;
+  background: url(assets/ok.png) no-repeat 50% 50%;
+  background-size: contain;
+}
+.logForm .err {
+  display: none;
+  position: absolute;
+  top: 26px;
+  left: 10px;
+  width: 260px;
+  height: 20px;
+  background-color: rgb(87, 11, 11);
+  border-radius: 2px;
+  font-size: 12px;
+}
+.logForm .err .angle {
+  position: absolute;
+  top: -15px;
+  left: 15px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-bottom: 8px solid rgb(90, 9, 9);
+}
+#addButton {
+  width: 120px;
+  height: 36px;
+  background-color: rgb(30, 11, 54);
+  color:rgb(226, 218, 236);
+  font-family: cursive;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+}
+#addButton.addButton_active {
+  box-shadow: 0 0 10px seashell;
+  background-color: rgb(45, 168, 107);
+}
+#cleanButton {
+  width: 80px;
+}
+
+
+
+.gameSettings {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 300px;
+  margin: 0 auto;
+  padding: 40px 70px;
+  background-color:rgb(111, 81, 150);
+  border: 2px solid rgb(226, 218, 236); 
+}
+.gameSettings select {
+  height: 30px;
+}
+
+
+.player {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(140, 114, 173);
+  margin-bottom: 15px;
+}
+
+
+
+
+
+
+
