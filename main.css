@@ -258,7 +258,10 @@ a {
   backface-visibility: hidden;
 }
 .card__front {
-  background-color:rgb(226, 218, 236);
+  background-color: rgb(226, 218, 236);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
   width: 100%;
   height: 100%;
   position: absolute;
