@@ -18,12 +18,12 @@ a {
   width: 1200px; 
   background-color: rgb(30, 11, 54);
   margin: 0 auto;
-  padding: 20px 140px 20px 80px;
+  padding: 20px 80px 20px 60px;
 }
 .nav {
   display: flex;
   justify-content: space-between;
-  width: 900px;
+  width: 1000px;
   margin: 0 auto;
   margin-bottom: 50px;
 }
@@ -66,19 +66,6 @@ a {
   text-align: center;
   margin-bottom: 10px;
   height: 74px;
-}
-.logOutBtn {
-  display: block;
-  width: 120px;
-  height: 36px;
-  background-color: rgb(30, 11, 54);
-  color:rgb(226, 218, 236);
-  font-family: cursive;
-  border-radius: 4px;
-
-  margin: 0 auto;
-  border:none;
-  font-size: 16px;
 }
 
 
@@ -183,6 +170,105 @@ a {
 }
 .gameSettings select {
   height: 30px;
+}
+
+
+.game-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 30px;
+  padding: 8px;
+  background-color:rgb(111, 81, 150);
+  border: 2px solid rgb(226, 218, 236);
+}
+.game-buttons .btn,
+.game-buttons .show {
+  width: 120px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: rgb(30, 11, 54);
+  color:rgb(226, 218, 236);
+  font-family: cursive;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.game-field {
+  width: 100%;
+  background-color:rgb(111, 81, 150);
+  border: 2px solid rgb(226, 218, 236);
+}
+.game-cards {
+  border: 2px solid rgb(226, 218, 236);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0;
+}
+.game-cards_16 {
+  width: 530px;
+  height: 530px;
+}
+.game-cards_36 {
+  width: 790px;
+  height: 790px;
+}
+.game-cards_64 {
+  width: 1060px;
+  height: 1060px;
+}
+
+.card-container {
+  margin: 15px;
+  perspective: 300px;
+  cursor: pointer;
+}
+.card-container:hover .card{
+  //transform: translateZ(200px);
+  box-shadow: 0 3px 8px black;
+}
+.card{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 5px black;
+
+  transition: all .5s;
+
+  transform-style: preserve-3d;
+  transform-origin: right;
+}
+
+.card__back {
+  background: rgb(30, 11, 54) url(assets/cardback.png) no-repeat 50% 50%;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+
+  backface-visibility: hidden;
+}
+.card__front {
+  background-color:rgb(226, 218, 236);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+}
+.flipped {
+  transform: rotateY(180deg) translateX(-100%); 
+  transform-origin: left;
 }
 
 
