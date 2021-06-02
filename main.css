@@ -284,6 +284,7 @@ a {
   background: rgba(0, 0, 0, 0.25);
 }
 .logForm {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -293,7 +294,19 @@ a {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
-.logForm .form-heading{
+.logForm .close-btn {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 30px;
+  background: #fff url(assets/closeform.png) no-repeat 50% 50%;
+  background-size: contain;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.logForm .form-heading {
   width: 100%;
   height: 67px;
   padding: 20px 16px;
