@@ -20,9 +20,6 @@ body {
 a {
   text-decoration: none;
 }
-.hidden {
-  display: none;
-}
 
 .header {
   background: #2196F3;
@@ -498,6 +495,11 @@ a {
   text-align: center;
   font-size: 40px;
   color:rgb(30, 11, 54);
+}
+
+
+.hidden {
+  display: none;
 }
 
 
