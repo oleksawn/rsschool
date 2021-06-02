@@ -387,7 +387,6 @@ a {
   margin-bottom: 30px;
   padding: 8px;
 }
-.game-buttons .btn,
 .game-buttons .show {
   width: 200px;
   height: 65px;
@@ -405,8 +404,21 @@ a {
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
 }
-.game-buttons .btn{
+.game-buttons .game-btn {
   cursor: pointer;
+  width: 65px;
+  height: 65px;
+  border: none;
+  border-radius: 65px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+}
+.game-btn_start {
+  background: #fff url(assets/play.png) no-repeat 50% 50%;
+  background-size: contain;
+}
+.game-btn_stop {
+  background: #fff url(assets/pause.png) no-repeat 50% 50%;
+  background-size: contain;
 }
 .game-cards {
   border: 2px solid rgb(226, 218, 236);
@@ -417,6 +429,8 @@ a {
   align-items: center;
   flex-wrap: wrap;
   padding: 0;
+  position: relative;
+  background: rgba(0, 0, 0, 0.05);
 }
 .game-cards_16 {
   width: 530px;
@@ -489,12 +503,35 @@ a {
   background: url(assets/congrat.png) no-repeat 50% 50%;
   background-size: cover;
 }
-.congrat-message {
+.congrat {
   position: relative;
-  top: 40%;
+  top: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.congrat-message {
   text-align: center;
   font-size: 40px;
-  color:rgb(30, 11, 54);
+   color: #2196F3;
+   margin-bottom: 15px;
+}
+.congrat__scores-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  background: #F2F9FE;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #2196F3;
+  cursor: pointer;
 }
 
 
