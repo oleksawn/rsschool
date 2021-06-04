@@ -2,11 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: './src/entry.js',
+    main: './src/entry.ts',
   },
   output: {
     filename: '[name].js',
@@ -41,6 +42,11 @@ module.exports = {
       title: 'match-match game'
     }),
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/assets', to: 'assets' },
+      ],
+    }),
   ],
   resolve: {
     extensions: ['.ts', '.js'],

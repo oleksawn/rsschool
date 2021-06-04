@@ -1,0 +1,562 @@
+@font-face {
+  font-family: "Roboto";
+  src: url('assets/fonts/Roboto-Regular.ttf');
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #fff;
+  min-height: 100vh;
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.4px;
+}
+a {
+  text-decoration: none;
+}
+
+.header {
+  background: #2196F3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1440px; 
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  margin-right: 150px;
+}
+.logo_up,
+.logo_down {
+  width: 80px;
+  height: 20px;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+.logo_up {
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #2196F3;
+}
+.logo_down{
+  color: #2196F3;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  margin-right: auto;
+  height: 64px;
+}
+.nav__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+}
+.nav__item_active {
+  background: #1E88E5;
+}
+.nav__item p {
+  text-align: center;
+  font-size: 12px;
+  color: #FFFFFF;
+}
+
+.nav__icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.nav__icon_about {
+ background: #fff url('assets/about.png') no-repeat 50% 50%;
+}
+.nav__icon_scores {
+  background: rgba(255, 255, 255, 0.1) url('assets/scores.png') no-repeat 50% 50%;
+}
+.nav__icon_settings{
+  background: #fff url('assets/settings.png') no-repeat 50% 50%;
+}
+
+.header-buttons {
+  display: flex;
+  flex-direction: row;
+}
+.header__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 36px;
+  margin-left: 30px;
+  background: #F2F9FE;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #2196F3;
+  cursor: pointer;
+}
+.header__btn_game {
+  width: 130px;
+}
+
+.loggedGamer {
+  width: 160px;
+  height: 40px;
+}
+.loggedGamer__data {
+  text-align: center;
+  font-size: 12px;
+  color: #FFFFFF;
+}
+
+
+.about {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 800px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 30px 180px 80px 35px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.about__heading {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.about .section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 780px;
+  margin-bottom: 20px;
+}
+.about .info {
+  display: flex;
+  flex-direction: row;
+  width: 360px;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #fff;
+}
+.about .number {
+  width: 40px;
+  height: 40px;
+  padding: 11px 15px;
+  background: #2196F3;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
+  margin-right: 16px;
+}
+.about__reg .example {
+  width: 302px;
+  height: 218px;
+  background: url('assets/reg.png') no-repeat 50% 50%;
+  background-size: cover;
+}
+.about__set .example {
+  width: 116px;
+  height: 73px;
+  background: url('assets/set.png') no-repeat 50% 50%;
+  background-size: cover;
+}
+.about__game .example {
+  width: 330px;
+  height: 240px;
+  background: url('assets/game.png') no-repeat 50% 50%;
+  background-size: cover;
+}
+
+
+.scores-container {
+  width: 1000px;
+  height: 800px;
+  margin: 0 auto;
+  padding: 45px 112px 0 35px;
+  background: rgba(0, 0, 0, 0.05);
+  margin-top: 30px;
+}
+.player {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.08);
+  margin-bottom: 15px;
+}
+.player__name {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.1px;
+  color: #333333;
+  margin-bottom: 6px;
+}
+.player__email {
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.4px;
+  color: #333333;
+  margin-bottom: 8px;
+}
+.player__score {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+.player__score-num {
+  color: #2196F3;
+}
+
+
+.gameSettings {
+  width: 1000px;
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 47px;
+  padding: 30px 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.24);
+}
+.gameSettings .select {
+  width: 256px;
+  
+}
+.gameSettings p.select {
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.gameSettings select {
+  border: none;
+  border-bottom: 1ps solid #e5e5e5;
+  margin-bottom: 35px;
+  font-size: 14px;
+  line-height: 21px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+
+.form-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+}
+.logForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 460px;
+  margin: 0 auto;
+  background: #FAFAFA;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.logForm .close-btn {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 30px;
+  background: #fff url('assets/closeform.png') no-repeat 50% 50%;
+  background-size: contain;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.logForm .form-heading {
+  width: 100%;
+  height: 67px;
+  padding: 20px 16px;
+  background-color: #fff;
+}
+.inputs-container {
+  padding: 30px 16px;
+}
+.logForm .wrapper {
+  width: 310px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.logForm input {
+  width: 280px;
+  height: 30px;
+  margin: 0;
+  margin-bottom: 24px;
+}
+.logForm .ok {
+  display: none;
+  width: 30px;
+  height: 30px;
+  background: url('assets/ok.png') no-repeat 50% 50%;
+  background-size: contain;
+}
+.logForm .err {
+  display: none;
+  position: absolute;
+  top: 26px;
+  left: 10px;
+  width: 260px;
+  height: 20px;
+  background-color: rgb(248, 155, 155);
+  border-radius: 2px;
+  font-size: 12px;
+}
+.logForm .err .angle {
+  position: absolute;
+  top: -15px;
+  left: 15px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-bottom: 8px solid rgb(248, 155, 155);
+}
+#addButton {
+  width: 110px;
+  height: 36px;
+  border: none;
+  background: #2196F3;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+#addButton.addButton_active {
+  background-color: rgb(45, 168, 107);
+}
+#cleanButton {
+  width: 93px;
+  height: 36px;
+  background: #E3F2FD;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.18);
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #2196F3;
+}
+
+
+.game-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 800px;
+  height: 50px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  padding: 8px;
+}
+.game-buttons .show {
+  width: 200px;
+  height: 65px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.4);
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+}
+.game-buttons .game-btn {
+  cursor: pointer;
+  width: 65px;
+  height: 65px;
+  border: none;
+  border-radius: 65px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+}
+.game-btn_start {
+  background: #fff url('assets/play.png') no-repeat 50% 50%;
+  background-size: contain;
+}
+.game-btn_stop {
+  background: #fff url('assets/pause.png') no-repeat 50% 50%;
+  background-size: contain;
+}
+.game-cards {
+  border: 2px solid rgb(226, 218, 236);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0;
+  position: relative;
+  background: rgba(0, 0, 0, 0.05);
+}
+.game-cards_16 {
+  width: 530px;
+  height: 530px;
+}
+.game-cards_36 {
+  width: 790px;
+  height: 790px;
+}
+.game-cards_64 {
+  width: 1060px;
+  height: 1060px;
+}
+
+.card-container {
+  margin: 15px;
+  perspective: 300px;
+  cursor: pointer;
+}
+.card-container:hover .card{
+  box-shadow: 0 3px 8px black;
+}
+.card{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 5px black;
+
+  transition: all .5s;
+
+  transform-style: preserve-3d;
+  transform-origin: right;
+}
+
+.card__back {
+  background: rgb(30, 11, 54) url('./assets/cardback.png') no-repeat 50% 50%;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+
+  backface-visibility: hidden;
+}
+.card__front {
+  background-color: rgb(226, 218, 236);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+}
+.flipped {
+  transform: rotateY(180deg) translateX(-100%); 
+  transform-origin: left;
+}
+
+.congrat-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url('assets/congrat.png') no-repeat 50% 50%;
+  background-size: cover;
+}
+.congrat {
+  position: relative;
+  top: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.congrat-message {
+  text-align: center;
+  font-size: 40px;
+   color: #2196F3;
+   margin-bottom: 15px;
+}
+.congrat__scores-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  background: #F2F9FE;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #2196F3;
+  cursor: pointer;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
