@@ -1,7 +1,4 @@
-
-<?xml-stylesheet type="text/css" href="style.css"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1280pt" height="720pt" viewBox="0 0 1280 720"
-fill="#000000">
+<svg class='svg' xmlns="http://www.w3.org/2000/svg" width="1280pt" height="720pt" viewBox="0 0 1280 720">
 	<g transform="translate(0.000000,720.000000) scale(0.100000,-0.100000)">
 		<path d="M5775 5093 c-16 -8 -37 -22 -46 -29 -12 -11 -21 -11 -47 -2 -27 11
 -35 10 -59 -8 -36 -25 -100 -152 -115 -226 -11 -54 -11 -59 11 -81 12 -14 37
