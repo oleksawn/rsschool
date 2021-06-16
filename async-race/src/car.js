@@ -1,28 +1,14 @@
 import { DomEl } from './dom';
 
-export class Car {
-  constructor(name, color, carParent) {
-    this.name = name;
-    this.color = color;
-    this.carParent = carParent;
-  }
-
-  addCar() {
-    const carContainer = new DomEl(this.carParent, 'car_container').el;
-
-    const carControls = new DomEl(carContainer, 'car_controls').el;
-    const carTrack = new DomEl(carContainer, 'car_track').el;
-
-    const carName = new DomEl(carControls, 'car_name', 'p', `${this.name}`).el;
-
+export class CarNode {
+  constructor(carParent) {
+    this.pageCar = new DomEl(carParent, ['page__car']);
+    this.carControls = new DomEl(this.pageCar.el, ['car__controls']);
+    this.controlsCarName = new DomEl(this.carControls.el, ['controls__car-name'], 'p');
+    this.carTrack = new DomEl(this.pageCar.el, ['car__track']);
     // <object type="image/svg+xml" data="car.svg"></object>
-    const carImg = new DomEl(carTrack, 'car_img', 'object').el;
-    carImg.setAttribute('type', 'image/svg+xml');
-    carImg.setAttribute('data', 'assets/car.svg');
-    carImg.setAttribute('class', 'car_img');
-    carImg.color = this.color;
-    carImg.onload = function () {
-      this.contentDocument.getElementsByClassName("svg")[0].setAttribute('fill', this.color);
-    };
+    this.trackCarImg = new DomEl(this.carTrack.el, ['track__car-img'], 'object');
+    this.trackCarImg.el.setAttribute('type', 'image/svg+xml');
+    this.trackCarImg.el.setAttribute('data', 'assets/car.svg');
   }
 }

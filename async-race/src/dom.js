@@ -1,9 +1,9 @@
 export class DomEl {
-  constructor(parentEl, classEl, tagEl = 'div', contentEl = '') {
-    const el = document.createElement(tagEl);
-    parentEl.appendChild(el);
-    el.className = classEl;
-    el.innerHTML = contentEl;
+  constructor(nodeParent, elClasses, elTag = 'div', elContent = '') {
+    const el = document.createElement(elTag);
+    el.classList = elClasses;
+    el.innerHTML = elContent;
     this.el = el;
+    this.parent = nodeParent;
   }
 }

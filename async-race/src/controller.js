@@ -1,30 +1,44 @@
-import { DomEl } from './dom';
-import { Page } from './page';
+import { GaragePage } from './page';
 
 const baseUrl = 'http://127.0.0.1:3000';
 
 export const controller = {
   garageRoute() {
-    const container = new DomEl(document.body, 'container').el;
-    const header = new DomEl(container, 'header').el;
+    const garagePage = new GaragePage();
 
-    const garage = new DomEl(container, 'garage_container').el;
+    function fetchData(page, notRendered) {
+      fetch(`${baseUrl}/garage?_page=${page}&_limit=7`)
+        .then((response) => {
+          console.log(response);
+          const carsNum = Number(response.headers.get('X-Total-Count'));
+          garagePage.pageNum = page;
+          garagePage.carsAmount = carsNum;
+          return response.json();
+        })
+        .then((carsArr) => {
+          console.log('after fetch', carsArr);
+          garagePage.updateData(carsArr);
+          if (notRendered) {
+            garagePage.renderPage();
+          }
+        });
+    };
 
-    const carsControls = new DomEl(garage, 'controls_container').el;
-
-    const pageNum = 1;
-    fetch(`${baseUrl}/garage?_page=${pageNum}&_limit=7`)
-      .then((response) => {
-        console.log(response);
-        const carsNum = response.headers.get('X-Total-Count');
-        const carsAmount = new DomEl(garage, 'cars_amount', 'h2', `Garage (${carsNum})`).el;
-        return response.json();
-      })
-      .then((cars) => {
-        console.log(cars);
-        const page = new Page(pageNum, cars, garage);
-        page.addPage();
-      });
-
+    garagePage.getPrevBtn().onclick = () => {
+      let page = garagePage.getPageNum();
+      if (page > 1) {
+        page -= 1;
+        fetchData(page, true);
+      }
+    };
+    garagePage.getNextBtn().onclick = () => {
+      let page = garagePage.getPageNum();
+      const carsAmount = garagePage.getCarsAmount();
+      if (carsAmount - (7 * page) > 0) {
+        page += 1;
+        fetchData(page, true);
+      }
+    };
+    fetchData(1, true);
   }
 }

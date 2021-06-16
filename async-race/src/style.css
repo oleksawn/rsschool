@@ -12,72 +12,80 @@
 .header {
   height: 80px;
   padding: 10px;
-  background-color: darkslategrey;
   border: 3px solid #fff;
+  background-color: darkslategrey;
 }
 
-.garage_container {
+.garage {
   padding: 10px;
   border: 3px solid #fff;
-  background-color: darkslateblue;
+  background-color: darkslategrey;
+}
+.garage__cars-amount {
+  font-size: 32px;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: dodgerblue;
+  border: 2px solid rgb(192, 160, 160);
+}
+.garage__page-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: dodgerblue;
+  border: 2px solid rgb(192, 160, 160);
+}
+.page-controls__btn {
+  width: 100px;
+  height: 40px;
+  margin: 10px;
+}
+.page-controls__page-number{
+  font-size: 24px;
 }
 
-.controls_container {
+.garage__cars-controls-container {
   height: 100px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: dodgerblue;
+  border: 2px solid rgb(192, 160, 160);
+}
+.garage__page {
+  height: 870px;
   padding: 10px;
   background-color: dodgerblue;
   border: 2px solid rgb(192, 160, 160);
 }
 
-.cars_amount {
-  padding: 10px;
-  border: 2px solid rgb(192, 160, 160);
-  font-size: 32px;
-}
-
-.cars_page {
-  padding: 10px;
-  border: 2px solid rgb(192, 160, 160);
-  background-color: deepskyblue;
-}
-
-.garage_page-num {
-  font-size: 24px;
-  padding: 10px;
-  border: 1px solid #fff;
-}
-
-.cars_container {
-  background-color: #333;
-  height: 845px;
-  padding: 10px;
-  border: 1px solid #fff;
-}
-
-.car_container {
-  padding: 10px;
-  border: 1px dotted red;
+.page__car {
   display: flex;
   flex-direction: row;
   height: 90px;
   margin-bottom: 10px;
-  background-color: rgb(21, 21, 53);
+  padding: 10px;
+  border: 1px solid #fff;
+  background-color: #333;
 }
 
-.car_controls {
+.car__controls {
+  width: 80px;
+  margin-right: 10px;
   padding: 10px;
   border: 1px dotted rgb(45, 182, 75);
-  width: 80px;
 }
-.car_name {
+.controls__car-name {
   font-size: 18px;
 }
 
-.car_track {
+.car__track {
+  width: 1000px;
   padding: 10px;
   border: 1px dotted rgb(45, 182, 75);
-  width: 1000px;
 }
-.car_img {
+.track__car-img {
   width: 80px;
 }
