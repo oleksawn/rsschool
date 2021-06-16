@@ -1,0 +1,91 @@
+.container {
+  width: 1600px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 200px;
+  background-color: #000;
+  font-family: cursive;
+  font-size: 16px;
+  color: #fff;
+}
+
+.header {
+  height: 80px;
+  padding: 10px;
+  border: 3px solid #fff;
+  background-color: darkslategrey;
+}
+
+.garage {
+  padding: 10px;
+  border: 3px solid #fff;
+  background-color: darkslategrey;
+}
+.garage__cars-amount {
+  font-size: 32px;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: dodgerblue;
+  border: 2px solid rgb(192, 160, 160);
+}
+.garage__page-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: dodgerblue;
+  border: 2px solid rgb(192, 160, 160);
+}
+.page-controls__btn {
+  width: 100px;
+  height: 40px;
+  margin: 10px;
+}
+.page-controls__page-number{
+  font-size: 24px;
+}
+
+.garage__cars-controls-container {
+  height: 100px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: dodgerblue;
+  border: 2px solid rgb(192, 160, 160);
+}
+.garage__page {
+  height: 870px;
+  padding: 10px;
+  background-color: dodgerblue;
+  border: 2px solid rgb(192, 160, 160);
+}
+
+.page__car {
+  display: flex;
+  flex-direction: row;
+  height: 90px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #fff;
+  background-color: #333;
+}
+
+.car__controls {
+  width: 80px;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px dotted rgb(45, 182, 75);
+}
+.controls__car-name {
+  font-size: 18px;
+}
+
+.car__track {
+  width: 1000px;
+  padding: 10px;
+  border: 1px dotted rgb(45, 182, 75);
+}
+.track__car-img {
+  width: 80px;
+}
