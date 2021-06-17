@@ -66,7 +66,30 @@ export class GaragePage {
           this.fetchData(this.pageNum, true);
         });;
     }
-    this.nodes.CarsControlsAddHundred = new DomEl(this.nodes.garageCarsControls.el, ['cars-controls__btn'], 'button', 'add hundred cars');
+    this.nodes.carsControlsAddHundred = new DomEl(this.nodes.garageCarsControls.el, ['cars-controls__btn'], 'button', 'add hundred cars');
+    const nameArr = ['Tesla', 'BMW', 'Audi', 'Bentley', 'Chevrolet', 'Citroen', 'Fiat', 'Ferrari', 'Ford', 'Honda'];
+    const modelArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+    const charArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+    this.nodes.carsControlsAddHundred.el.onclick = () => {
+      console.log("click add-100-cars button");
+      for (let i = 0; i < 100; i++) {
+        const randomName = `${nameArr[Math.floor(Math.random() * nameArr.length)]} ${modelArr[Math.floor(Math.random() * modelArr.length)]}`;
+        const randomColor = `#${charArr[Math.floor(Math.random() * charArr.length)]}${charArr[Math.floor(Math.random() * charArr.length)]}${charArr[Math.floor(Math.random() * charArr.length)]}${charArr[Math.floor(Math.random() * charArr.length)]}${charArr[Math.floor(Math.random() * charArr.length)]}${charArr[Math.floor(Math.random() * charArr.length)]}`;
+        fetch(`${baseUrl}/garage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: randomName,
+            color: randomColor
+          })
+        })
+          .then((response) => {
+            console.log("add random", response);
+
+            this.fetchData(this.pageNum, true);
+          });;
+      }
+    }
 
     // main page: cars section: cars list
     this.nodes.garagePage = new DomEl(this.nodes.garage.el, ['garage__page']);
@@ -163,9 +186,6 @@ export class GaragePage {
           this.renderPage();
         }
         console.log("page: end fetchData()");
-      });
-  };
-
-
-
+      })
+  }
 }
