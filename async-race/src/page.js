@@ -12,9 +12,15 @@ export class GaragePage {
 
     this.nodes = {};
     this.nodes.container = new DomEl(document.body, ['container']);
+    // header
     this.nodes.header = new DomEl(this.nodes.container.el, ['header']);
+    // main page
     this.nodes.garage = new DomEl(this.nodes.container.el, ['garage']);
+
+    // main page: cars amount section
     this.nodes.garageCarsAmount = new DomEl(this.nodes.garage.el, ['garage__cars-amount'], 'h2', `Garage: ${this.carsAmount} cars`);
+
+    // main page: pagination section
     this.nodes.garagePageControls = new DomEl(this.nodes.garage.el, ['garage__page-controls']);
     this.nodes.pageControlsPrevBtn = new DomEl(this.nodes.garagePageControls.el, ['page-controls__btn page-controls__btn_prev'], 'button', 'prev');
     this.nodes.pageControlsPrevBtn.el.onclick = () => {
@@ -35,6 +41,8 @@ export class GaragePage {
         this.fetchData(page, true);
       }
     };
+
+    // main page: cars controls section: creating / race
     this.nodes.garageCarsControls = new DomEl(this.nodes.garage.el, ['garage__cars-controls-container']);
     this.nodes.carsControlsAddOneForm = new DomEl(this.nodes.garageCarsControls.el, ['cars-controls__form']);
     this.nodes.addOneFormName = new DomEl(this.nodes.carsControlsAddOneForm.el, ['cars-controls-form__name'], 'input');
@@ -59,15 +67,33 @@ export class GaragePage {
         });;
     }
     this.nodes.CarsControlsAddHundred = new DomEl(this.nodes.garageCarsControls.el, ['cars-controls__btn'], 'button', 'add hundred cars');
+
+    // main page: cars section: cars list
     this.nodes.garagePage = new DomEl(this.nodes.garage.el, ['garage__page']);
     this.nodes.cars = [];
     for (let i = 0; i < 7; i++) {
       this.nodes.cars.push(new CarNode(this.nodes.garagePage.el));
+
       this.nodes.cars[i].controlsCarDelete.el.onclick = (event) => {
         console.log("click delete btn for car #", event.target.dataset.carId);
         fetch(`${baseUrl}/garage/${event.target.dataset.carId}`, { method: 'DELETE' })
           .then((response) => {
             console.log("delete", response);
+            this.fetchData(this.pageNum, true);
+          });;
+      }
+      this.nodes.cars[i].updateFormOk.el.onclick = (event) => {
+        console.log("click update btn for car #", event.target.dataset.carId);
+        fetch(`${baseUrl}/garage/${event.target.dataset.carId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: this.nodes.cars[i].updateFormName.el.value,
+            color: this.nodes.cars[i].updateFormColor.el.value
+          })
+        })
+          .then((response) => {
+            console.log("update", response);
             this.fetchData(this.pageNum, true);
           });;
       }
@@ -104,6 +130,9 @@ export class GaragePage {
         carWrapper.trackCarImg.id = carsArr[index].id;
         carWrapper.controlsCarName.el.innerText = carsArr[index].name;
         carWrapper.controlsCarDelete.el.dataset.carId = carsArr[index].id;
+        carWrapper.updateFormName.el.value = carsArr[index].name;
+        carWrapper.updateFormColor.el.value = carsArr[index].color;
+        carWrapper.updateFormOk.el.dataset.carId = carsArr[index].id;
         carWrapper.trackCarImg.el.color = carsArr[index].color;
         carWrapper.trackCarImg.el.onload = function () {
           this.contentDocument.getElementsByClassName("svg")[0].setAttribute('fill', this.color);

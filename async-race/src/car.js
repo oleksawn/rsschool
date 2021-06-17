@@ -13,7 +13,13 @@ export class CarNode {
     this.controlsCarGo = new DomEl(this.controlsLine.el, ['controls__car-go'], 'button', 'Go');
     this.controlsCarStop = new DomEl(this.controlsLine.el, ['controls__car-stop'], 'button', 'Stop');
 
-    this.controlsCarUpdate = new DomEl(this.carControls.el, ['controls__car-update'], 'button', 'update');
+    this.controlsUpdateForm = new DomEl(this.carControls.el, ['controls__car-update-form']);
+    this.updateFormName = new DomEl(this.controlsUpdateForm.el, ['car-update-form__name'], 'input');
+    this.updateFormName.el.setAttribute('type', 'text');
+    this.updateFormColor = new DomEl(this.controlsUpdateForm.el, ['car-update-form__color'], 'input');
+    this.updateFormColor.el.setAttribute('type', 'color');
+    this.updateFormOk = new DomEl(this.controlsUpdateForm.el, ['car-update-form__btn'], 'button', 'update');
+
     this.carTrack = new DomEl(this.pageCar.el, ['car__track']);
     // <object type="image/svg+xml" data="car.svg"></object>
     this.trackCarImg = new DomEl(this.carTrack.el, ['track__car-img'], 'object');

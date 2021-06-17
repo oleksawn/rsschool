@@ -81,7 +81,7 @@ p {
 }
 
 .car__controls {
-  width: 150px;
+  width: 280px;
   margin-right: 10px;
   padding: 10px;
   border: 1px dotted rgb(45, 182, 75);
@@ -95,6 +95,10 @@ p {
 }
 .controls__car-delete {
   margin-right: auto;
+}
+.controls__car-update-form {
+  display: flex;
+  flex-direction: row;
 }
 
 .car__track {
