@@ -1,3 +1,7 @@
+p {
+  margin: 0;
+}
+
 .container {
   width: 1600px;
   min-height: 100vh;
@@ -55,7 +59,6 @@
   border: 2px solid rgb(192, 160, 160);
 }
 .garage__page {
-  height: 870px;
   padding: 10px;
   background-color: dodgerblue;
   border: 2px solid rgb(192, 160, 160);
@@ -72,20 +75,38 @@
 }
 
 .car__controls {
-  width: 80px;
+  width: 150px;
   margin-right: 10px;
   padding: 10px;
   border: 1px dotted rgb(45, 182, 75);
 }
+.car__controls_line {
+  display: flex;
+  justify-content: right;
+}
 .controls__car-name {
   font-size: 18px;
 }
+.controls__car-delete {
+  margin-right: auto;
+}
 
 .car__track {
-  width: 1000px;
+  width: 1200px;
   padding: 10px;
   border: 1px dotted rgb(45, 182, 75);
 }
 .track__car-img {
   width: 80px;
+}
+
+
+
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: flex;
 }
