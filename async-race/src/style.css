@@ -55,7 +55,6 @@
   border: 2px solid rgb(192, 160, 160);
 }
 .garage__page {
-  height: 870px;
   padding: 10px;
   background-color: dodgerblue;
   border: 2px solid rgb(192, 160, 160);
@@ -82,10 +81,21 @@
 }
 
 .car__track {
-  width: 1000px;
+  width: 1200px;
   padding: 10px;
   border: 1px dotted rgb(45, 182, 75);
 }
 .track__car-img {
   width: 80px;
+}
+
+
+
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: flex;
 }

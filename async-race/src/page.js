@@ -43,10 +43,14 @@ export class GaragePage {
   renderPage() {
     Object.values(this.nodes).forEach((node) => {
       if (node.parent === undefined) {
-        node.forEach((carWrapper) => {
-          Object.values(carWrapper).forEach((carNode) => {
-            carNode.parent.appendChild(carNode.el);
-          });
+        node.forEach((carWrapper, index) => {
+          console.log("this.carArr.length = ", this.carsArr.length);
+          if (index < this.carsArr.length) {
+
+            Object.values(carWrapper).forEach((carNode) => {
+              carNode.parent.appendChild(carNode.el);
+            });
+          }
         });
       }
       else {
@@ -62,13 +66,18 @@ export class GaragePage {
     this.nodes.pageControlsPageNum.el.innerText = `Page #${this.pageNum}`;
 
     this.nodes.cars.forEach((carWrapper, index) => {
-      console.log(carsArr, carsArr[index].id);
-      carWrapper.trackCarImg.id = carsArr[index].id;
-      carWrapper.controlsCarName.el.innerText = carsArr[index].name;
-      carWrapper.trackCarImg.el.color = carsArr[index].color;
-      carWrapper.trackCarImg.el.onload = function () {
-        this.contentDocument.getElementsByClassName("svg")[0].setAttribute('fill', this.color);
-      };
+      if (carsArr[index] !== undefined) {
+        carWrapper.pageCar.el.classList.remove('hidden');
+        carWrapper.trackCarImg.id = carsArr[index].id;
+        carWrapper.controlsCarName.el.innerText = carsArr[index].name;
+        carWrapper.trackCarImg.el.color = carsArr[index].color;
+        carWrapper.trackCarImg.el.onload = function () {
+          this.contentDocument.getElementsByClassName("svg")[0].setAttribute('fill', this.color);
+        };
+      }
+      else {
+        carWrapper.pageCar.el.classList.add('hidden');
+      }
     });
   }
 }
