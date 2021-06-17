@@ -36,15 +36,20 @@ export class GaragePage {
       }
     };
     this.nodes.garageCarsControls = new DomEl(this.nodes.garage.el, ['garage__cars-controls-container']);
-    this.nodes.CarsControlsAddOne = new DomEl(this.nodes.garageCarsControls.el, ['cars-controls__btn'], 'button', 'add one car');
-    this.nodes.CarsControlsAddOne.el.onclick = (event) => {
+    this.nodes.carsControlsAddOneForm = new DomEl(this.nodes.garageCarsControls.el, ['cars-controls__form']);
+    this.nodes.addOneFormName = new DomEl(this.nodes.carsControlsAddOneForm.el, ['cars-controls-form__name'], 'input');
+    this.nodes.addOneFormName.el.setAttribute('type', 'text');
+    this.nodes.addOneFormColor = new DomEl(this.nodes.carsControlsAddOneForm.el, ['cars-controls-form__color'], 'input');
+    this.nodes.addOneFormColor.el.setAttribute('type', 'color');
+    this.nodes.addOneFormOk = new DomEl(this.nodes.carsControlsAddOneForm.el, ['cars-controls-form__btn'], 'button', 'add car');
+    this.nodes.addOneFormOk.el.onclick = (event) => {
       console.log("click add one btn");
       fetch(`${baseUrl}/garage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: 'Added car',
-          color: '#88f'
+          name: this.nodes.addOneFormName.el.value,
+          color: this.nodes.addOneFormColor.el.value
         })
       })
         .then((response) => {

@@ -58,6 +58,12 @@ p {
   background-color: dodgerblue;
   border: 2px solid rgb(192, 160, 160);
 }
+.cars-controls__add-one-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+
 .garage__page {
   padding: 10px;
   background-color: dodgerblue;
