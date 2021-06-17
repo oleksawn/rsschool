@@ -1,7 +1,5 @@
 import { DomEl } from './dom';
 
-const baseUrl = 'http://127.0.0.1:3000';
-
 export class CarNode {
   constructor(carParent) {
     this.pageCar = new DomEl(carParent, ['page__car']);

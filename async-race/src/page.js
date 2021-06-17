@@ -84,8 +84,6 @@ export class GaragePage {
           })
         })
           .then((response) => {
-            console.log("add random", response);
-
             this.fetchData(this.pageNum, true);
           });;
       }
@@ -105,6 +103,7 @@ export class GaragePage {
             this.fetchData(this.pageNum, true);
           });;
       }
+
       this.nodes.cars[i].updateFormOk.el.onclick = (event) => {
         console.log("click update btn for car #", event.target.dataset.carId);
         fetch(`${baseUrl}/garage/${event.target.dataset.carId}`, {
@@ -120,6 +119,44 @@ export class GaragePage {
             this.fetchData(this.pageNum, true);
           });;
       }
+
+
+      (function (carObj) {
+        console.log(carObj);
+        carObj.controlsCarGo.el.onclick = (event) => {
+          console.log("click GO btn for car #", event.target.dataset.carId);
+          fetch(`${baseUrl}/engine?id=${event.target.dataset.carId}&status=started`, { method: 'GET' })
+            .then((response) => {
+              console.log("GO", response);
+              return response.json();
+            })
+            .then((res) => {
+              console.log(res.velocity, res.distance);
+              console.log(carObj);
+              let lastTime = 0;
+              let isDrive = true;
+              function step(time) {
+                if (lastTime === 0) {
+                  lastTime = time;
+                  if (isDrive) requestAnimationFrame(step);
+                }
+                else {
+                  const progressTime = time - lastTime;
+                  const progressPx = progressTime * (1120 / (res.distance / res.velocity));
+                  carObj.trackCarImg.el.style.transform = `translateX(${progressPx}px)`;
+                  if (isDrive) requestAnimationFrame(step);
+                }
+              }
+              requestAnimationFrame(step);
+              fetch(`${baseUrl}/engine?id=${event.target.dataset.carId}&status=drive`)
+                .then((response) => {
+                  console.log(response);
+                  isDrive = false;
+                  console.log(isDrive);
+                });
+            });
+        }
+      })(this.nodes.cars[i]);
     }
   }
 
@@ -153,10 +190,12 @@ export class GaragePage {
         carWrapper.trackCarImg.id = carsArr[index].id;
         carWrapper.controlsCarName.el.innerText = carsArr[index].name;
         carWrapper.controlsCarDelete.el.dataset.carId = carsArr[index].id;
+        carWrapper.controlsCarGo.el.dataset.carId = carsArr[index].id;
         carWrapper.updateFormName.el.value = carsArr[index].name;
         carWrapper.updateFormColor.el.value = carsArr[index].color;
         carWrapper.updateFormOk.el.dataset.carId = carsArr[index].id;
         carWrapper.trackCarImg.el.color = carsArr[index].color;
+        carWrapper.trackCarImg.el.dataset.carId = carsArr[index].id;
         carWrapper.trackCarImg.el.onload = function () {
           this.contentDocument.getElementsByClassName("svg")[0].setAttribute('fill', this.color);
         };
