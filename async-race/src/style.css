@@ -1,3 +1,7 @@
+p {
+  margin: 0;
+}
+
 .container {
   width: 1600px;
   min-height: 100vh;
@@ -71,13 +75,20 @@
 }
 
 .car__controls {
-  width: 80px;
+  width: 150px;
   margin-right: 10px;
   padding: 10px;
   border: 1px dotted rgb(45, 182, 75);
 }
+.car__controls_line {
+  display: flex;
+  justify-content: right;
+}
 .controls__car-name {
   font-size: 18px;
+}
+.controls__car-delete {
+  margin-right: auto;
 }
 
 .car__track {
