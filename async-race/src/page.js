@@ -17,7 +17,7 @@ export class GaragePage {
     this.nodes.garageCarsAmount = new DomEl(this.nodes.garage.el, ['garage__cars-amount'], 'h2', `Garage: ${this.carsAmount} cars`);
     this.nodes.garagePageControls = new DomEl(this.nodes.garage.el, ['garage__page-controls']);
     this.nodes.pageControlsPrevBtn = new DomEl(this.nodes.garagePageControls.el, ['page-controls__btn page-controls__btn_prev'], 'button', 'prev');
-    this.nodes.pageControlsPrevBtn.onclick = () => {
+    this.nodes.pageControlsPrevBtn.el.onclick = () => {
       let page = this.pageNum;
       if (page > 1) {
         page -= 1;
@@ -27,7 +27,7 @@ export class GaragePage {
     };
     this.nodes.pageControlsPageNum = new DomEl(this.nodes.garagePageControls.el, ['page-controls__page-number'], 'h3', `Page #${this.pageNum}`);
     this.nodes.pageControlsNextBtn = new DomEl(this.nodes.garagePageControls.el, ['page-controls__btn page-controls__btn_next'], 'button', 'next');
-    this.nodes.pageControlsNextBtn.onclick = () => {
+    this.nodes.pageControlsNextBtn.el.onclick = () => {
       let page = this.pageNum;
       if (this.carsAmount - (7 * page) > 0) {
         page += 1;
@@ -36,6 +36,24 @@ export class GaragePage {
       }
     };
     this.nodes.garageCarsControls = new DomEl(this.nodes.garage.el, ['garage__cars-controls-container']);
+    this.nodes.CarsControlsAddOne = new DomEl(this.nodes.garageCarsControls.el, ['cars-controls__btn'], 'button', 'add one car');
+    this.nodes.CarsControlsAddOne.el.onclick = (event) => {
+      console.log("click add one btn");
+      fetch(`${baseUrl}/garage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Added car',
+          color: '#88f'
+        })
+      })
+        .then((response) => {
+          console.log("add", response);
+
+          this.fetchData(this.pageNum, true);
+        });;
+    }
+    this.nodes.CarsControlsAddHundred = new DomEl(this.nodes.garageCarsControls.el, ['cars-controls__btn'], 'button', 'add hundred cars');
     this.nodes.garagePage = new DomEl(this.nodes.garage.el, ['garage__page']);
     this.nodes.cars = [];
     for (let i = 0; i < 7; i++) {
