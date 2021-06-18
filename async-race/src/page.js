@@ -89,6 +89,65 @@ export class GaragePage {
       }
     }
 
+    this.nodes.carsControlsRaceForm = new DomEl(this.nodes.garageCarsControls.el, ['cars-controls__race-form']);
+    this.nodes.raceFormRace = new DomEl(this.nodes.carsControlsRaceForm.el, ['race-form__btn'], 'button', 'race');
+    this.nodes.raceFormRace.el.onclick = () => {
+      this.nodes.raceFormRace.el.setAttribute('disabled', 'disabled');
+      this.nodes.raceFormReset.el.removeAttribute('disabled');
+      this.stopAllCars([], () => {
+        console.log("click RACE btn");
+        this.nodes.cars.forEach((obj) => {
+          (function (carObj) {
+            console.log(carObj.trackCarImg.id);
+            carObj.controlsCarGo.el.setAttribute('disabled', 'disabled');
+            carObj.controlsCarStop.el.removeAttribute('disabled');
+            carObj.isStopped = false;
+            carObj.isDrive = true;
+            fetch(`${baseUrl}/engine?id=${carObj.trackCarImg.el.dataset.carId}&status=started`, { method: 'GET' })
+              .then((response) => {
+                console.log(carObj.trackCarImg.id, response);
+                return response.json();
+              })
+              .then((res) => {
+                console.log(carObj.trackCarImg.id, res.distance, res.velocity);
+                let lastTime = 0;
+
+                function step(time) {
+                  if (lastTime === 0) {
+                    lastTime = time;
+                    if (carObj.isDrive) requestAnimationFrame(step);
+                  }
+                  else {
+                    const progressTime = time - lastTime;
+                    const progressPx = progressTime * (1120 / (res.distance / res.velocity));
+                    carObj.trackCarImg.el.style.transform = `translateX(${progressPx}px)`;
+                    if (carObj.isStopped) carObj.trackCarImg.el.style.transform = `translateX(0px)`;
+                    if (progressPx < 1121 && carObj.isDrive) requestAnimationFrame(step);
+                  }
+                }
+                requestAnimationFrame(step);
+                console.time(carObj.trackCarImg.id);
+                fetch(`${baseUrl}/engine?id=${carObj.trackCarImg.el.dataset.carId}&status=drive`)
+                  .then((response) => {
+                    console.timeEnd(carObj.trackCarImg.id);
+                    console.log(carObj.trackCarImg.id, response, carObj.trackCarImg.el.style.transform);
+                    carObj.isDrive = false; // stop animate
+                  });
+              });
+          })(obj);
+        });
+
+      });
+    }
+    this.nodes.raceFormReset = new DomEl(this.nodes.carsControlsRaceForm.el, ['race-form__btn'], 'button', 'reset');
+    this.nodes.raceFormReset.el.onclick = () => {
+      this.nodes.raceFormReset.el.setAttribute('disabled', 'disabled');
+      this.stopAllCars([], () => {
+        this.nodes.raceFormRace.el.removeAttribute('disabled');
+      });
+    }
+
+
     // main page: cars section: cars list
     this.nodes.garagePage = new DomEl(this.nodes.garage.el, ['garage__page']);
     this.nodes.cars = [];
@@ -165,31 +224,51 @@ export class GaragePage {
         carObj.controlsCarStop.el.onclick = (event) => {
           console.log("click STOP btn for car #", event.target.dataset.carId);
           carObj.controlsCarStop.el.setAttribute('disabled', 'disabled');
-          carObj.controlsCarGo.el.removeAttribute('disabled');
           fetch(`${baseUrl}/engine?id=${event.target.dataset.carId}&status=stopped`, { method: 'GET' })
             .then((response) => {
               console.log("STOP", response);
               carObj.isDrive = false;
               carObj.isStopped = true; // stop animate + back to init place
               carObj.trackCarImg.el.style.transform = `translateX(0px)`;
+              carObj.controlsCarGo.el.removeAttribute('disabled');
             })
         }
       })(this.nodes.cars[i]);
     }
   }
 
-  stopAllCars() {
+  stopAllCars(carsArr, afterStop) {
+    console.log(this.nodes.cars.length)
+    let notAnimated = true;
     for (let i = 0; i < this.nodes.cars.length; i++) {
-      this.nodes.cars[i].controlsCarStop.el.setAttribute('disabled', 'disabled');
-      this.nodes.cars[i].controlsCarGo.el.removeAttribute('disabled');
-      fetch(`${baseUrl}/engine?id=${this.nodes.cars[i].trackCarImg.el.dataset.carId}&status=stopped`, { method: 'GET' })
-        .then((response) => {
-          console.log("STOP", response);
-          this.nodes.cars[i].isDrive = false;
-          this.nodes.cars[i].isStopped = true; // stop animate + back to init place
-          this.nodes.cars[i].trackCarImg.el.style.transform = `translateX(0px)`;
-        });
-    };
+      if (this.nodes.cars[i].isDrive === false && this.nodes.cars[i].isStopped === true) {
+        console.log("stop all cars -- if not drive & stopped");
+      }
+      else {
+        notAnimated = false;
+      };
+    }
+    const promiseArr = [];
+    if (notAnimated === false) {
+      console.log("Animated");
+      for (let i = 0; i < this.nodes.cars.length; i++) {
+        this.nodes.cars[i].controlsCarStop.el.setAttribute('disabled', 'disabled');
+        this.nodes.cars[i].controlsCarGo.el.removeAttribute('disabled');
+        const p = fetch(`${baseUrl}/engine?id=${this.nodes.cars[i].trackCarImg.el.dataset.carId}&status=stopped`, { method: 'GET' })
+          .then((response) => {
+            console.log("STOP", response);
+            this.nodes.cars[i].isDrive = false;
+            this.nodes.cars[i].isStopped = true; // stop animate + back to init place
+            this.nodes.cars[i].trackCarImg.el.style.transform = `translateX(0px)`;
+          });
+        promiseArr.push(p);
+      }
+      this.nodes.raceFormRace.el.removeAttribute('disabled');
+    }
+    Promise.all(promiseArr).then(() => {
+      afterStop();
+    }
+    );
   };
 
   renderPage() {
@@ -200,7 +279,6 @@ export class GaragePage {
           if (index < this.carsArr.length) {
             Object.values(carWrapper).forEach((carNode) => {
               if (typeof carNode !== 'boolean') {
-                console.log("Render() - node if", carNode);
                 carNode.parent.appendChild(carNode.el);
               }
             });
@@ -218,6 +296,19 @@ export class GaragePage {
     this.carsArr = carsArr;
     this.nodes.garageCarsAmount.el.innerText = `Garage: ${this.carsAmount} cars`;
     this.nodes.pageControlsPageNum.el.innerText = `Page #${this.pageNum}`;
+    this.nodes.raceFormReset.el.setAttribute('disabled', 'disabled');
+    if (this.pageNum === 1) {
+      this.nodes.pageControlsPrevBtn.el.setAttribute('disabled', 'disabled');
+    }
+    else {
+      this.nodes.pageControlsPrevBtn.el.removeAttribute('disabled');
+    }
+    if (this.carsAmount - (7 * this.pageNum) <= 0) {
+      this.nodes.pageControlsNextBtn.el.setAttribute('disabled', 'disabled');
+    }
+    else {
+      this.nodes.pageControlsNextBtn.el.removeAttribute('disabled');
+    }
 
     this.nodes.cars.forEach((carWrapper, index) => {
       if (carsArr[index] !== undefined) {
@@ -242,8 +333,6 @@ export class GaragePage {
         carWrapper.pageCar.el.classList.add('hidden');
       }
     });
-
-    this.stopAllCars();
   }
 
   fetchData(page, notRendered) {
@@ -259,11 +348,11 @@ export class GaragePage {
       })
       .then((carsArr) => {
         console.log('after fetch', carsArr);
-        this.updateData(carsArr);
-        if (notRendered) {
-          console.log("page: end fetchData(), if notRendered: renderPage()");
+        this.stopAllCars(carsArr, () => {
+          console.log("toPageChange");
+          this.updateData(carsArr);
           this.renderPage();
-        }
+        });
         console.log("page: end fetchData()");
       })
   }
